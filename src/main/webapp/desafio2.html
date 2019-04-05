@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Desafio2</title>
+  </head>
+  <body ng-app="mainApp">
+<h1>
+Fornecedor
+</h1>
+
+<div ng-controller="mainController">
+<table class="table table-bordered" id="tableFornecedor">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Comment</th>
+      <th scope="col">CNPJ</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="fornecedor in fornecedores">
+      <th scope="row">{{ fornecedor.id }} </th>
+      <td>{{ fornecedor.name }}</td>
+      <td>{{ fornecedor.email }}</td>
+      <td>{{ fornecedor.comment }}</td>
+      <td>{{ fornecedor.cnpj }}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#updateModal" ng-click="showUpdateForm(fornecedor.id);">edit</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="#deleteModal" ng-click="showDeleteForm(fornecedor.id);">delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
+      </td>
+      <td colspan="2">Mostrando {{ beginIndex }} a {{ endIndex }} de {{ total }} registros</td>
+      <td colspan="3">
+        <nav aria-label="navigator">
+          <ul class="pagination" id="pagesNav">
+            <li class="page-item" ng-repeat="pag in pages">
+               <a class="page-link" href="#" ng-click="updatePage(pag.number);" id="{{ pag.label }}">{{ pag.number }}</a></li>
+          </ul>
+        </nav>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div id="mess">{{ mensaje }}</div>
+
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Novo fornecedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="insertForm">
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" ng-model="form1name">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" ng-model="form1email">
+            <label for="comment">Comment</label>
+            <input type="text" class="form-control" ng-model="form1comment">
+            <label for="cnpj">CNPJ</label>
+            <input type="text" class="form-control" ng-model="form1cnpj">
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="insertConfirm();"">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar fornecedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="updateForm">
+      <div class="modal-body">
+          <div class="form-group row">
+            <label for="form2.id" class="col-sm-2 col-form-label">Id</label>
+            <div class="col-sm-10"><input type="number" readonly class="form-control-plaintext" ng-model="form2id"></div>
+          </div>
+          <div class="form-group">
+            <label for="form2.name">Name</label>
+            <input type="text" class="form-control" ng-model="form2name">
+            <label for="form2.email">Email</label>
+            <input type="email" class="form-control" ng-model="form2email">
+            <label for="form2.comment">Comment</label>
+            <input type="text" class="form-control" ng-model="form2comment">
+            <label for="form2.cnpj">CNPJ</label>
+            <input type="text" class="form-control" ng-model="form2cnpj">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="updateConfirm();">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar fornecedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          Tem certeza que quer eliminar?  <div id="dvalue"></div>
+      </div>
+      <form id="deleteForm">
+      <div class="modal-footer">
+          <div class="form-group row">
+            <label for="form3id">Id</label>
+            <div class="col-sm-10"><input type="number" readonly class="form-control-plaintext" ng-model="form3id"></div>
+          </div>
+        <button type="button" class="btn btn-primary" ng-click="deleteConfirm();">Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>
+<script>
+   var mainApp  = angular.module("mainApp",[]);
+   var listpage = "list?p=0";
+   var editIndex = -1;
+
+   mainApp.controller('mainController', function($scope,$http) {
+      $scope.mensaje = "";
+      $scope.currentPage = 1;
+      $scope.beginIndex = 1;
+      $scope.endIndex = 10;
+      $scope.total = 0;
+      $scope.pages = [{number:1,label:"page1"},{number:2,label:"page2"}];
+
+      $scope.showUpdateForm = function(item) {
+         var urlget = "id?id=" + item;
+         $scope.mensaje = "Atualizar registro " + item;
+         $http.get(urlget).then( function(response){
+            var elemento = response.data;
+            $scope.form2id = elemento.id;
+            $scope.form2name = elemento.name;
+            $scope.form2email = elemento.email;
+            $scope.form2comment = elemento.comment;
+            $scope.form2cnpj = elemento.cnpj;
+         });
+      };
+
+      $scope.showDeleteForm = function(item) {
+         $scope.mensaje = "Eliminar registro " + item;
+         $scope.form3id = item;
+      };
+
+      $scope.insertConfirm = function() {
+         $scope.dataForm = {"name":$scope.form1name,"email":$scope.form1email,"comment":$scope.form1comment,"cnpj":$scope.form1cnpj};
+         $http.post("add",$scope.dataForm).then( function(response){
+            $scope.mensaje = "Registro adicionado";
+         });
+         $("#insertForm").find('input[type=number], input[type=text], input[type=email]').val('');
+
+         var tmpvar = parseInt(00);
+         tmpvar += parseInt($scope.total) % 10;
+         if(tmpvar == 0) {
+            tmpvar = parseInt($scope.total) + 1;
+            $scope.createPages(tmpvar); 
+            $("#page"+$scope.currentPage).parent().addClass("active");
+         }; 
+
+         $scope.getPage().then( function() {
+            $("#insertModal").modal("hide");
+         });
+      };
+
+      $scope.updateConfirm = function(){
+         $scope.dataForm = {"id":$scope.form2id,"name":$scope.form2name,"email":$scope.form2email,"comment":$scope.form2comment, "cnpj":$scope.form2cnpj};
+         $http.post("update",$scope.dataForm).then( function(response){
+            $scope.mensaje = "Registro atualizado";
+         });
+         $("#updateForm").find('input[type=number], input[type=text], input[type=email]').val('');         
+         $scope.getPage().then( function() {
+            $("#updateModal").modal("hide");
+         });
+      };
+
+      $scope.deleteConfirm = function(){
+         $scope.dataForm = {"id":$scope.form3id,"empty":"empty"};
+         $http.post("delete",$scope.dataForm).then( function(response){
+            $scope.mensaje = "Registro eliminado";
+         });
+         var tmpvar = parseInt(00);
+         tmpvar += parseInt($scope.total) % 10;
+         if(tmpvar == 1) {
+            $scope.initValues();
+            $scope.currentPage = 1; 
+            $("#page"+$scope.currentPage).parent().addClass("active");
+            listpage = "list?p=0";
+         }; 
+         $scope.getPage().then( function() {
+            $("#deleteModal").modal("hide");
+         });
+      };
+
+      $scope.updatePage = function(item){
+          $scope.beginIndex = 1 + 10*(item - 1);
+          $scope.endIndex = 10 + 10*(item -1);
+          if($scope.endIndex > $scope.total) {
+             $scope.endIndex = $scope.total;
+          }
+          listpage = "list?p=" + (item -1);
+          $scope.currentPage = item;
+          $scope.getPage();
+          $(".page-item").removeClass("active");
+          $("#page"+item).parent().addClass("active");
+      };
+
+      $scope.createPages = function(nro){
+         $scope.pages = [];
+         for( var i = 0; i < (nro/10); i++){
+            $scope.pages[i] = {number:1,label:""};
+            $scope.pages[i].number = i + 1;
+            $scope.pages[i].label = "page" + (i+1);
+         };
+      };
+
+      $scope.initValues = function(){
+         $http.get("count").then( function(response){
+            $scope.total = response.data.count;
+            var totallist = parseInt(00);
+            totallist += parseInt(response.data.count);
+            $scope.createPages(totallist);
+         });
+      };
+
+      $scope.getPage = function(){
+         return $http.get(listpage).then( function(response){
+            $scope.fornecedores = response.data;
+         });                  
+      };
+
+      $scope.initValues();
+      $scope.getPage().then( function() {
+         $("#page1").parent().addClass("active");
+      });
+   });
+
+   mainApp.directive('testdirective', function() {
+      return function(scope, element, attrs) {         
+         scope.$watch('$last',function(v){
+            if (v) {
+              console.log('LAST');  
+            };
+         });    
+      };
+   });
+</script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
