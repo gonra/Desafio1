@@ -22,16 +22,17 @@ Para efetuar compilaçao e execuçao basta usar o comando:
   $ gradle appRun
 
 Ficando acessivel na url http://localhost:8080/desafio1/
-Funçoes disponibizadas 
 
-Funçao          | method | url        | parametro  | resultado
-----------------|--------|------------|------------|-----------
-registro id     |   get  | `id?id=1`  | id: indice | `{"id","name","email","comment","cnpj"}`
-numero total    |   get  | `count `   | -          | `{"count":5}`
-lista paginada  |   get  | `list?p=0` | p: #pagina | `[{fornecedor1},{fornecedor2}, ..,{fornecedor10}]`
+Funções disponibizadas 
+
+Função          | method | url        | parametro   | resultado
+----------------|--------|------------|-------------|-----------
+registro id     |   get  | `id?id=1`  | id: #indice | `{"id","name","email","comment","cnpj"}`
+numero de registros| get | `count `   | -           | `{"count":5}`
+lista paginada  |   get  | `list?p=0` | p: #pagina  | `[{fornecedor1},{fornecedor2}, ..,{fornecedor10}]`
 adicionar registro| post | `add   `   |`{"name","email","comment","cnpj"}` | `{"OK":#registro}`
 editar registro |   post | `update`   |`{"id","name","email","comment","cnpj"}` | `{"OK":#registro}`
-eliminar registro|  post | `delete`   |`{"id":1}`    | `{"OK":#registro}`
+eliminar registro|  post | `delete`   |`{"id":1}`   | `{"OK":#registro}`
 
 
 ## Desafio2
