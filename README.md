@@ -18,9 +18,9 @@ Para a função logica usa-se Hibernate/JPA.
 
 Para rodar o programa se requer Java 1.8 e gradle. 
 Para efetuar compilaçao e execuçao basta usar o comando:
-
+```
   $ gradle appRun
-
+```
 Ficando acessivel na url http://localhost:8080/desafio1/
 
 Funções disponibizadas 
