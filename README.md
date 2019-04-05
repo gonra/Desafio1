@@ -21,7 +21,7 @@ Para efetuar compilaçao e execuçao basta usar o comando:
 
   $ gradle appRun
 
-Ficando acessivel na url [http://localhost:8080/desafio1/]
+Ficando acessivel na url http://localhost:8080/desafio1/
 Funçoes disponibizadas 
 
 Funçao          | method | url        | parametro  | resultado
@@ -39,6 +39,6 @@ eliminar registro|  post | `delete`   |`{"id":1}`    | `{"OK":#registro}`
 De forma conjunta com a parte previa programou-se a interface com Bootstrap CSS e AngularJS usando estrategia de pagina 
 unica, com as funções de criação e modificação usando formularios modais, e quadro de dialogo para eliminação de registros.
 
-Ficando disponivel na url [http://localhost:8080/desafio1/desafio2.html]
+Ficando disponivel na url http://localhost:8080/desafio1/desafio2.html
 
 Requer ter acesso a conexao de internet por incluir Bootstrap CSS/JS, AngularJS, JQuery e Popper.js desde os sites originais.
