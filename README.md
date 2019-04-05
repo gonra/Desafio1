@@ -11,23 +11,23 @@ Desenvolveu-se um projeto JavaEE consistente num webservice em REST usando gradl
 - eliminação 
 
 de registros armazenados em banco de dados. Usou-se banco de dados HSQLDB que funciona no runtime do webserver,
-e nao requer instalaçao, sendo a estrutura da tabela gerada na inicializaçao do Webservlet. A estrutura entregada :
+e não requer instalação, sendo a estrutura da tabela gerada na inicialização do Webservlet. A estrutura entregada :
 
     {"id": 1, "name": "fornec lorimospm", "email": "fornec@loripsom", "comment": "loreipsum", "cnpj": "00.000/0000-00"}
 
 Para a funçao logica usa-se Hibernate/JPA com classes geradas por ferramenta modificados para caso.
 
-Para rodar o programa 
+Para rodar o programa :
 
    gradle appRun
 
-Ficando acessivel na url [http://localhost:8080/desafio1/]: http://localhost:8080/desafio1/ ""
+Ficando acessivel na url [http://localhost:8080/desafio1/]
 
 ## Desafio2
 
 De forma conjunta com a parte previa programou-se a interface com Bootstrap CSS e AngularJS usando estrategia de pagina 
-unica, com as funçoes de criaçao e modificaçao usando formularios modais, e quadro de dialogo para eliminaçao de registros.
+unica, com as funções de criação e modificação usando formularios modais, e quadro de dialogo para eliminação de registros.
 
-Ficando disponivel na url [http://localhost:8080/desafio1/desafio2.html]: http://localhost:8080/desafio1/desafio2.html ""
+Ficando disponivel na url [http://localhost:8080/desafio1/desafio2.html]
 
 Requer ter acesso a conexao de internet por incluir Bootstrap CSS/JS, AngularJS, JQuery e Popper.js desde os sites originais.
