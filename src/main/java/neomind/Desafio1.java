@@ -36,9 +36,8 @@ public class Desafio1 extends HttpServlet {
 
         try {
            con=DriverManager.getConnection("jdbc:hsqldb:testDB","SA","");
-           ResultSet rs = con.createStatement().executeQuery("select count(*) as total from Fornecedor");
+           ResultSet rs = con.createStatement().executeQuery("select count(*) from Fornecedor");
         } catch (SQLException e) {
-           e.printStackTrace(System.out);
            notinitialized = true;
         }
         if(notinitialized) {

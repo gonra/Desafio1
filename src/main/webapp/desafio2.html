@@ -36,14 +36,14 @@ Fornecedor
       <td>{{ fornecedor.cnpj }}</td>
       <td>
         <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#updateModal" ng-click="showUpdateForm(fornecedor.id);">edit</button>
+            data-target="#updateModal" ng-click="showUpdateForm(fornecedor.id);">Editar</button>
         <button type="button" class="btn btn-danger" data-toggle="modal"
-            data-target="#deleteModal" ng-click="showDeleteForm(fornecedor.id);">delete</button>
+            data-target="#deleteModal" ng-click="showDeleteForm(fornecedor.id);">Eliminar</button>
       </td>
     </tr>
     <tr>
       <td>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Add</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertModal">Adicionar</button>
       </td>
       <td colspan="2">Mostrando {{ beginIndex }} a {{ endIndex }} de {{ total }} registros</td>
       <td colspan="3">

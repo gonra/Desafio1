@@ -2,7 +2,7 @@
 ---------------------------------------------------------
 
 ## Desafio1
-Desenvolveu-se um projeto JavaEE consistente num webservice em REST usando gradle e que suporta :
+Desenvolveu-se um projeto JavaEE consistente num webservice JSON usando gradle e que suporta :
 
 - consulta por ID
 - lista paginada
@@ -10,16 +10,16 @@ Desenvolveu-se um projeto JavaEE consistente num webservice em REST usando gradl
 - edição 
 - eliminação 
 
-de registros armazenados em banco de dados. Usou-se banco de dados HSQLDB que funciona no runtime do webserver,
-e não requer instalação, sendo a estrutura da tabela gerada na inicialização do Webservlet. A estrutura entregada :
+dos registros armazenados no banco de dados. Usou-se banco de dados HSQLDB que funciona no runtime do webserver, portanto não requer instalação, sendo a estrutura da tabela gerada na inicialização do Webservlet. A estrutura corresponde com os dados entregados :
 
     {"id": 1, "name": "fornec lorimospm", "email": "fornec@loripsom", "comment": "loreipsum", "cnpj": "00.000/0000-00"}
 
-Para a funçao logica usa-se Hibernate/JPA com classes geradas por ferramenta modificados para caso.
+Para a função logica usa-se Hibernate/JPA.
 
-Para rodar o programa :
+Para rodar o programa se requer Java 1.8 e gradle. 
+Para efetuar compilaçao e execuçao basta usar o comando:
 
-   gradle appRun
+  $ gradle appRun
 
 Ficando acessivel na url [http://localhost:8080/desafio1/]
 
